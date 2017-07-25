@@ -23,6 +23,7 @@ namespace MineBot
         public MainWindow()
         {
             InitializeComponent();
-        }
+            MainLogic.Begin();
+        }           
     }
 }

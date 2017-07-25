@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineBot"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="740" Width="515">
     <Grid>
-        
+        <TextBox FontFamily="Consolas" x:FieldModifier="public" x:Name="Field" HorizontalAlignment="Left" Height="700"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="497"/>
     </Grid>
 </Window>
