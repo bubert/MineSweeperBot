@@ -20,14 +20,38 @@ namespace MineBot
 
         private static void StartSwiping()
         {
-            throw new NotImplementedException();
+            var r = new Random();
+            int h = r.Next(Height), w = r.Next(Width);
+            while (CellArray[h, w].IsMine)
+            {
+                h = r.Next(Height);
+                w = r.Next(Width);
+            }
         }
 
         private static void OpenCell(int h, int w)
         {
-            
+            if (CellArray[h, w].IsMine)
+                throw new Exception("BOOM");
+
+            CellArray[h, w].IsOpened = true;
+            if (CellArray[h, w].NeighbourMines == 0)
+                OpenNeighbours(h, w);
+
         }
-        public static void UpdateField()
+
+        private static void OpenNeighbours(int h, int w)
+        {
+            for (var i = Math.Max(h - 1, 0); i < Math.Min(h + 2, Height); i++)
+            {
+                for (var j = Math.Max(w - 1, 0); j < Math.Min(w + 2, Width); j++)
+                {
+                    OpenCell(i, j);
+                }
+            }
+        }
+
+        private static void UpdateField()
         {
             var s = string.Empty;
             for (var i = 0; i < Height; i++)
@@ -35,18 +59,20 @@ namespace MineBot
                 for (var j = 0; j < Width; j++)
                 {
                     if (CellArray[i, j].IsOpened)
-                        s += CellArray[i, j].IsMine ? "+" : CellArray[i, j].NeighboursQty.ToString();
+                        s += CellArray[i, j].IsMine ? "+" : CellArray[i, j].NeighbourMines.ToString();
                     else
                         s += "x";
                 }
+
                 s += '\n';
             }
+
             Form.Field.Text = s;
         }
 
-        public static Cell[,] SetMines()
+        private static void SetMines()
         {
-            
+
             for (var i = 0; i < Height; i++)
             {
                 for (var j = 0; j < Width; j++)
@@ -54,6 +80,7 @@ namespace MineBot
                     CellArray[i, j] = new Cell();
                 }
             }
+
             var r = new Random();
             var counter = 0;
             while (counter < MinesQty)
@@ -67,19 +94,20 @@ namespace MineBot
                     {
                         for (var j = Math.Max(w - 1, 0); j < Math.Min(w + 2, Width); j++)
                         {
-                            CellArray[i, j].NeighboursQty++;
+                            CellArray[i, j].NeighbourMines++;
+                            CellArray[i, j].NeighbourUnknownMines++;
                         }
                     }
+
                     counter++;
                 }
             }
-            return CellArray;
         }
     }
     public class Cell
     {
-        public bool IsOpened, IsMine;
-        public int NeighboursQty;
+        public bool IsOpened, IsMine, IsFlagged;
+        public int NeighbourMines, NeighbourUnknownMines;
         public double MineProbability;
 
         public Cell()
@@ -87,5 +115,6 @@ namespace MineBot
             IsOpened = false;
             MineProbability = 1;
         }
+
     }
 }

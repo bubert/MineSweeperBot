@@ -3,9 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MineBot"
         mc:Ignorable="d"
-        Title="MainWindow" Height="740" Width="515">
+        Title="MainWindow" Height="740" Width="515" x:ClassModifier="internal">
     <Grid>
         <TextBox FontFamily="Consolas" x:FieldModifier="public" x:Name="Field" HorizontalAlignment="Left" Height="700"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="497"/>
     </Grid>
