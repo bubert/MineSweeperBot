@@ -4,8 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="740" Width="515" x:ClassModifier="internal">
+        Title="MainWindow" Height="790" Width="1015" x:ClassModifier="internal">
     <Grid>
-        <TextBox FontFamily="Consolas" x:FieldModifier="public" x:Name="Field" HorizontalAlignment="Left" Height="700"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="497"/>
+        <TextBox  FontFamily="Consolas" x:FieldModifier="public" x:Name="Field" HorizontalAlignment="Left" Height="700" VerticalAlignment="Top" Width="490" />
+        <TextBox FontFamily="Consolas" x:FieldModifier="public" x:Name="Field2" HorizontalAlignment="Right" Height="700" VerticalAlignment="Top" Width="490"/>
+    <Button Click="Button_OnClick" VerticalAlignment="Bottom" Width="50" Height="25" Margin="15" Content="Start"/>
+        <Button Click="ButtonBase_OnClick" VerticalAlignment="Bottom" Width="50" Height="25" Margin="15" HorizontalAlignment="Right" Content="continue"/>
     </Grid>
 </Window>
